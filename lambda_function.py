@@ -9,7 +9,6 @@ def lambda_handler(event, context):
         data = json.loads(event['body'])
 
         jira_request = data["fields"]["issuetype"]["name"].strip().lower().replace(' ', '-')
-        print(solicitud)
 
         github = GitHub()
 
@@ -21,16 +20,16 @@ def lambda_handler(event, context):
             client_name = data["fields"].get("customfield_XXXXX")
             client_display_name =  data["fields"].get("customfield_XXXXX")
             
-            if github.create_commit(new_branch_from_jira, client_name, client_display_name, solicitud, data):
+            if github.create_commit(new_branch_from_jira, client_name, client_display_name, jira_request, data):
                 if github.create_pull_request(new_branch_from_jira, client_name):
                     return {
                         'statusCode': 200,
-                        'body': json.dumps('Commit y Pull Request created successfully!')
+                        'body': json.dumps('Commit and Pull Request created successfully!')
                     }
                 else:
                     return {
                         'statusCode': 400,
-                        'body': json.dumps('Error creaeting Pull Request')
+                        'body': json.dumps('Error creating Pull Request')
                     }
             else:
                 return {
