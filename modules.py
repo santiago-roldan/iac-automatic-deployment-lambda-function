@@ -4,7 +4,7 @@ from resources import *
 
 class GitHub:
     def __init__(self):
-        self.usuario = 'YOUR_GITHUB_USERNAME'
+        self.user = 'YOUR_GITHUB_USERNAME'
         self.token = 'YOUR_GITHUB_TOKEN'
         self.headers = {
             'Content-Type': 'application/json',
