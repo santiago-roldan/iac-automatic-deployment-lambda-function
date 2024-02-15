@@ -3,7 +3,7 @@ import json
 def auth0_organization(client_display_name, client_name):
 
     org_display_name = client_display_name
-    org_name = client_name #org_display_name.replace(' ', '-')
+    org_name = client_name
     
     organization_template = f'''
 resource "auth0_organization" "{org_name}" {{
